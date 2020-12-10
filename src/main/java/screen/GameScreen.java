@@ -71,6 +71,8 @@ public class GameScreen extends Screen {
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
 
+	private static boolean pause = false;
+
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -146,6 +148,21 @@ public class GameScreen extends Screen {
 	 */
 	protected final void update() {
 		super.update();
+
+		if(inputManager.isKeyDown(KeyEvent.VK_ESCAPE) && this.inputDelay.checkFinished()) {
+			pause = true;
+			System.out.println("Pause Game");
+		}
+
+		while(pause) {
+			try {
+				Thread.sleep(100);
+				if(inputManager.isKeyDown(KeyEvent.VK_F1)) {
+					pause = false;
+					System.out.println("Game Start");
+				}
+			} catch(InterruptedException e){}
+		}
 
 		if (this.inputDelay.checkFinished() && !this.levelFinished) {
 
