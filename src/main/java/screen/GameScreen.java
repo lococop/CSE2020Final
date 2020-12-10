@@ -71,6 +71,7 @@ public class GameScreen extends Screen {
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
 
+
 	private static boolean pause = false;
 
 	/**
@@ -148,6 +149,7 @@ public class GameScreen extends Screen {
 	 */
 	protected final void update() {
 		super.update();
+
 
 		if(inputManager.isKeyDown(KeyEvent.VK_ESCAPE) && this.inputDelay.checkFinished()) {
 			pause = true;

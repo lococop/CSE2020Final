@@ -1,3 +1,4 @@
+
 [INFO|3:16:56]: Started loading resources. 
 [FINE|3:16:56]: Sprite Ship loaded. 
 [FINE|3:16:56]: Sprite ShipDestroyed loaded. 
@@ -41,3 +42,5 @@
 [INFO|3:17:17]: Removed enemy 1 from column 2 
 [INFO|3:17:18]: Destroyed ship in (1,2) 
 [INFO|3:17:18]: Removed enemy 2 from column 1 
+
+
