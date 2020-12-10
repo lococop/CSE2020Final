@@ -268,4 +268,45 @@ public final class FileManager {
 				bufferedWriter.close();
 		}
 	}
+
+	public void initializeScore(final List<Score> highScores) throws IOException {
+		OutputStream outputStream = null;
+		BufferedWriter bufferedWriter = null;
+
+		try {
+			String jarPath = FileManager.class.getProtectionDomain()
+					.getCodeSource().getLocation().getPath();
+			jarPath = URLDecoder.decode(jarPath, "UTF-8");
+
+			String scoresPath = new File(jarPath).getParent();
+			scoresPath += File.separator;
+			scoresPath += "scores";
+
+			File scoresFile = new File(scoresPath);
+
+			if (!scoresFile.exists())
+				scoresFile.createNewFile();
+
+			outputStream = new FileOutputStream(scoresFile);
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(
+					outputStream, Charset.forName("UTF-8")));
+
+			logger.info("Initialize user high scores.");
+
+			int savedCount = 0;
+			for (Score score : highScores) {
+				if (savedCount >= 4)
+					break;
+				bufferedWriter.write(score.getName());
+				bufferedWriter.newLine();
+				bufferedWriter.write(Integer.toString(score.getScore()));
+				bufferedWriter.newLine();
+				savedCount++;
+			}
+
+		} finally {
+			if (bufferedWriter != null)
+				bufferedWriter.close();
+		}
+	}
 }
